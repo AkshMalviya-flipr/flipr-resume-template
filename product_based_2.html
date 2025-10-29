@@ -92,7 +92,6 @@
       text-transform: uppercase;
       border-bottom: 3px solid #333;
       padding-bottom: 0px;
-      margin-bottom: 15px;
     }
 
     .section-content {
@@ -105,7 +104,7 @@
       font-weight: bold;
       color: #000;
       margin-bottom: 3px;
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     .company-info {
@@ -268,7 +267,7 @@
     {{/if}} {{#if summary}}
     <div class="section summary order-{{sectionPosition.summary}}">
       <div class="section-title">Summary</div>
-      <div class="section-content">{{summary}}</div>
+      <div class="section-content" style="margin-top: 8px;">{{summary}}</div>
     </div>
     {{/if}} {{#if workExperience}}
     <div class="section work-experience order-{{sectionPosition.work-experience}}">
@@ -384,7 +383,7 @@
     {{/if}} {{#if skills}}
     <div class="section skills order-{{sectionPosition.skills}}">
       <div class="section-title">Skills</div>
-      <div class="skills-grid">
+      <div class="skills-grid" style="margin-top: 8px;">
         {{#each skills}}
         <div>{{skill}}</div>
         {{/each}}
@@ -393,7 +392,7 @@
     {{/if}} {{#if additionalDetails.awards}}
     <div class="section additional-details order-{{sectionPosition.additional-details}}">
       <div class="section-title">Awards</div>
-      <div class="strengths">
+      <div class="strengths" style="margin-top: 8px;">
         {{#each additionalDetails.awards}}
 
         <div class="strength-item">
