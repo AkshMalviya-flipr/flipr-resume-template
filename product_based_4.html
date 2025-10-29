@@ -178,6 +178,7 @@
       }
 
       .project-links {
+        display: flex;
         font-size: 8.5pt;
         margin-top: 6px;
         color: #a8c5dd;
@@ -482,7 +483,8 @@
             {{#each education}}
             <div class="education-entry">
               <div class="education-degree">
-                {{degree}}{{#if fieldOfStudy}} - {{fieldOfStudy}}{{/if}} |
+                {{#if (eq degree "other")}} {{otherDegree}} {{else}} {{degree}}
+                {{/if}}{{#if fieldOfStudy}} - {{fieldOfStudy}}{{/if}} |
                 {{institution}}{{#if location}} , {{location}}{{/if}}
               </div>
               <div class="education-dates">
