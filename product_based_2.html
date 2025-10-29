@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <title>{{personalDetails.fullName}} - Resume</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 30px 0;
+      background: #f5f5f5;
+    }
+
+    @page :first {
+      margin-top: 0;
+    }
+
+    @media print {
+      .resume-container {
+        background-color: #f5f5f5 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        min-height: 100vh !important;
+        height: 100vh !important;
+        box-sizing: border-box;
+        padding: 40px 50px 0px;
+      }
+    }
+
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      size: A4;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      height: 100%;
+    }
+
+    .resume-container {
+      margin: 0 auto;
+      background-color: white;
+      padding: 40px 50px;
+      height: 100%;
+      min-height: 1123px;
+    }
+
+    .header {
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 32px;
+      color: #000;
+      margin-bottom: 5px;
+    }
+
+    .header .subtitle {
+      color: #38a2ff;
+      font-size: 16px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .contact-info {
+      display: flex;
+      font-size: 14px;
+      color: #555;
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #555;
+    }
+
+    .section {
+      margin-top: 25px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #000;
+      text-transform: uppercase;
+      border-bottom: 3px solid #333;
+      padding-bottom: 0px;
+      margin-bottom: 15px;
+    }
+
+    .section-content {
+      font-size: 14px;
+      color: #333;
+    }
+
+    .job-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #000;
+      margin-bottom: 3px;
+      margin-top: 10px;
+    }
+
+    .company-info {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      margin-bottom: 8px;
+    }
+
+    .company-name {
+      color: #38a2ff;
+      font-weight: bold;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .company-techs {
+      font-size: 14px;
+      margin-top: 5px;
+      font-weight: bold;
+      color: #292929;
+    }
+
+    .job-location {
+      font-size: 12px;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .job-entry {
+      padding-bottom: 12px;
+      margin-bottom: 4px;
+      border-bottom: 3px dashed gainsboro;
+    }
+    .job-entry:last-child {
+        border-bottom: none;
+    }
+
+    .education-entry {
+      padding-bottom: 12px;
+      margin-bottom: 4px;
+      border-bottom: 3px dashed gainsboro;
+    }
+    .education-entry:last-child {
+        border-bottom: none;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(6, fit-content(100%));
+      gap: 13px;
+      text-align: left;
+    }
+
+    .skills-grid div {
+      font-weight: 500;
+      padding-bottom: 6px;
+      border-bottom: 2px solid gainsboro;
+    }
+
+    .strengths {
+      display: flex;
+      gap: 30px;
+      margin-top: 10px;
+    }
+
+    .strength-item {
+      flex: 1;
+    }
+
+    .strength-title {
+      font-weight: bold;
+      color: #000;
+      margin-bottom: 5px;
+    }
+
+    .order-1 {
+      order: 1;
+    }
+
+    .order-2 {
+      order: 2;
+    }
+
+    .order-3 {
+      order: 3;
+    }
+
+    .order-4 {
+      order: 4;
+    }
+
+    .order-5 {
+      order: 5;
+    }
+
+    .order-6 {
+      order: 6;
+    }
+
+    .order-7 {
+      order: 7;
+    }
+
+    .order-8 {
+      order: 8;
+    }
+
+    .order-9 {
+      order: 9;
+    }
+
+    .order-10 {
+      order: 10;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="resume-container">
+    {{#if personalDetails}}
+    <div class="header">
+      <h1>{{personalDetails.fullName}}</h1>
+      <div class="contact-info">
+        {{#if personalDetails.phone}}<span><svg xmlns="http://www.w3.org/2000/svg"
+            style="width: 16px; height: 16px; margin-bottom: -3px;" viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24c1.12.37 2.33.57 3.57.57c.55 0 1 .45 1 1V20c0 .55-.45 1-1 1c-9.39 0-17-7.61-17-17c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1c0 1.25.2 2.45.57 3.57c.11.35.03.74-.25 1.02z" />
+          </svg> {{personalDetails.phone}}</span>{{/if}}
+        {{#if personalDetails.email}}<span><svg xmlns="http://www.w3.org/2000/svg"
+            style="width: 16px; height: 16px; margin-bottom: -3px;" viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 4l-8 5l-8-5V6l8 5l8-5z" />
+          </svg>
+          {{personalDetails.email}}</span>{{/if}} {{#if personalDetails.linkedIn}}<span><a target="_blank"
+            href="{{personalDetails.linkedIn}}"><svg xmlns="http://www.w3.org/2000/svg"
+              style="width: 16px; height: 16px; margin-bottom: -3px;" viewBox="0 0 24 24">
+              <path fill="currentColor"
+                d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37z" />
+            </svg> LinkedIn</a>{{/if}}</span>
+        {{#if personalDetails.website}}<span><a target="_blank" href="{{personalDetails.website}}"><svg
+              xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 14 14">
+              <path fill="#686868" fill-rule="evenodd"
+                d="M5.049.276A7.01 7.01 0 0 0 .028 6.375h3.2a15.8 15.8 0 0 1 1.82-6.1m-1.82 7.35h-3.2a7.01 7.01 0 0 0 5.02 6.1a15.8 15.8 0 0 1-1.82-6.1m3.424 6.367a14.5 14.5 0 0 1-2.17-6.367h5.035a14.5 14.5 0 0 1-2.17 6.367a7 7 0 0 1-.695 0m2.3-.268a7.01 7.01 0 0 0 5.02-6.099h-3.2a15.8 15.8 0 0 1-1.82 6.1m1.82-7.349h3.2a7.01 7.01 0 0 0-5.02-6.1a15.8 15.8 0 0 1 1.82 6.1M6.652.008a7 7 0 0 1 .696 0a14.5 14.5 0 0 1 2.169 6.367H4.483c.217-2.277.963-4.46 2.17-6.367"
+                clip-rule="evenodd" />
+            </svg>
+            Portfolio</a>{{/if}}</span>
+        {{#if personalDetails.location}}
+        <span><svg xmlns="http://www.w3.org/2000/svg" style="width: 16px; height: 16px; margin-bottom: -3px;"
+            viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="M12 11.5A2.5 2.5 0 0 1 9.5 9A2.5 2.5 0 0 1 12 6.5A2.5 2.5 0 0 1 14.5 9a2.5 2.5 0 0 1-2.5 2.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7" />
+          </svg></i>
+          {{personalDetails.location}}</span>
+        {{/if}}
+      </div>
+    </div>
+    {{/if}} {{#if summary}}
+    <div class="section summary order-{{sectionPosition.summary}}">
+      <div class="section-title">Summary</div>
+      <div class="section-content">{{summary}}</div>
+    </div>
+    {{/if}} {{#if workExperience}}
+    <div class="section work-experience order-{{sectionPosition.work-experience}}">
+      <div class="section-title">Experience</div>
+      {{#each workExperience}}
+      <div class="job-entry">
+        <div class="job-title">{{jobTitle}}</div>
+        <div class="company-info">
+          <div class="company-name">{{company}}</div>
+          <div class="job-location">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+              <path fill="#686868"
+                d="M19 4h-2V3a1 1 0 0 0-2 0v1H9V3a1 1 0 0 0-2 0v1H5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3m1 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-7h16Zm0-9H4V7a1 1 0 0 1 1-1h2v1a1 1 0 0 0 2 0V6h6v1a1 1 0 0 0 2 0V6h2a1 1 0 0 1 1 1Z" />
+            </svg>{{date startDate}} -
+            {{#if isCurrentlyWorking}}Present{{else}}{{date endDate}}{{/if}}
+            {{#if location}}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+              <path fill="#686868"
+                d="M12 11.5A2.5 2.5 0 0 1 9.5 9A2.5 2.5 0 0 1 12 6.5A2.5 2.5 0 0 1 14.5 9a2.5 2.5 0 0 1-2.5 2.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7" />
+            </svg>{{location}} {{/if}}
+          </div>
+        </div>
+        <div class="section-content">{{description}}</div>
+      </div>
+      {{/each}}
+    </div>
+
+    {{#if projects.length}}
+    <div class="section projects order-{{sectionPosition.projects}}">
+      <div class="section-title">Projects</div>
+      {{#each projects}}
+      <div class="project-entry" style="margin-top: 10px;">
+        <div class="job-title">{{projectName}}</div>
+
+        <div class="company-info">
+          {{#if startDate}}
+          <div class="job-location">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+              <path fill="#686868"
+                d="M19 4h-2V3a1 1 0 0 0-2 0v1H9V3a1 1 0 0 0-2 0v1H5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3m1 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-7h16Zm0-9H4V7a1 1 0 0 1 1-1h2v1a1 1 0 0 0 2 0V6h6v1a1 1 0 0 0 2 0V6h2a1 1 0 0 1 1 1Z" />
+            </svg>
+            {{date startDate}}{{#if endDate}} - {{date endDate}}{{/if}}
+          </div>
+          {{/if}}
+        </div>
+
+        {{#if techUsed}}
+        <div class="company-techs">
+          Tech Stack:
+          {{#each techUsed}}
+          {{this}}{{#unless @last}}, {{/unless}}
+          {{/each}}
+        </div>
+        {{/if}}
+
+        {{#if description}}
+        <div class="section-content" style="margin-top:8px;">
+          {{description}}
+        </div>
+        {{/if}}
+
+        {{#if githubUrl}}
+        <div class="project-links" style="margin-top:8px; font-size:13px;">
+          <a href="{{githubUrl}}" target="_blank" style="color:#38a2ff; text-decoration:none;">
+            <i class="fab fa-github"></i> GitHub
+          </a>
+          {{#if liveUrl}}
+          &nbsp;|&nbsp;
+          <a href="{{liveUrl}}" target="_blank" style="color:#38a2ff; text-decoration:none;">
+            <i class="fa-solid fa-globe"></i> Live Demo
+          </a>
+          {{/if}}
+        </div>
+        {{/if}}
+      </div>
+      {{/each}}
+    </div>
+    {{/if}}
+
+
+    {{/if}} {{#if education}}
+    <div class="section education order-{{sectionPosition.education}}">
+      <div class="section-title">Education</div>
+      {{#each education}}
+
+      <div class="education-entry">
+        <div class="job-title">
+          {{#if (eq degree "other")}} {{otherDegree}} {{else}} {{degree}}
+          {{/if}} {{#if fieldOfStudy}} in {{fieldOfStudy}}{{/if}}
+        </div>
+        <div class="company-name">{{institution}}</div>
+
+        <div class="job-location">
+          {{#if startDate}}
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+            <path fill="#686868"
+              d="M19 4h-2V3a1 1 0 0 0-2 0v1H9V3a1 1 0 0 0-2 0v1H5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3m1 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-7h16Zm0-9H4V7a1 1 0 0 1 1-1h2v1a1 1 0 0 0 2 0V6h6v1a1 1 0 0 0 2 0V6h2a1 1 0 0 1 1 1Z" />
+          </svg> {{date startDate}} - {{#if
+          isCurrentlyRunning}}Present{{else}}{{date endDate}}{{/if}}{{/if}}
+          {{#if location}}
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+            <path fill="#686868"
+              d="M12 11.5A2.5 2.5 0 0 1 9.5 9A2.5 2.5 0 0 1 12 6.5A2.5 2.5 0 0 1 14.5 9a2.5 2.5 0 0 1-2.5 2.5M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7" />
+          </svg>
+          {{location}}{{/if}}
+        </div>
+
+      </div>
+      {{/each}}
+    </div>
+
+
+    {{/if}} {{#if skills}}
+    <div class="section skills order-{{sectionPosition.skills}}">
+      <div class="section-title">Skills</div>
+      <div class="skills-grid">
+        {{#each skills}}
+        <div>{{skill}}</div>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}} {{#if additionalDetails.awards}}
+    <div class="section additional-details order-{{sectionPosition.additional-details}}">
+      <div class="section-title">Awards</div>
+      <div class="strengths">
+        {{#each additionalDetails.awards}}
+
+        <div class="strength-item">
+          <div class="strength-title">{{title}}</div>
+          {{#if summary}}
+          <div class="section-content">{{summary}}</div>
+          {{/if}}
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+  </div>
+</body>
+
+</html>
